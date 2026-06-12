@@ -45,14 +45,14 @@ For each row in the training set, RUL is computed as:
 RUL = last_cycle − current_cycle
 ```
 
-RUL is **saturated at 150 cycles** — early-life predictions are less critical for maintenance decisions than near-failure predictions, so capping prevents the model from over-fitting to large RUL values far from fault.
+RUL is saturated at 150 cycles to prevent the model from overfitting to large RUL values when the engine is healty— early-life predictions are less critical for maintenance decisions than near-failure predictions.
 
 ### Normalisation
 All remaining sensor columns are standardised using `StandardScaler` (fit on training data, applied to both train and test sets) to bring features onto a comparable scale.
 
 ### Train / Test Split
 - **Train**: all rows from `train_FD001.txt` with computed RUL labels
-- **Test**: the **last recorded cycle** per engine in `test_FD001.txt`, evaluated against `RUL_FD001.txt`
+- **Test**: the last recorded cycle per engine in `test_FD001.txt`, correspond to `RUL_FD001.txt`
 
 ---
 
@@ -86,19 +86,13 @@ Model RMSE scores are compared in a horizontal bar chart. Hyperparameter search 
 
 ## Digital Twin Simulation
 
-The `digital_twin(engine_id)` function simulates the predicted health trajectory of a single engine over all of its recorded test cycles:
-
-- The **actual RUL trajectory** is reconstructed by counting backwards from the ground-truth end-of-life RUL.
-- The **predicted RUL** is generated cycle-by-cycle using the trained Random Forest model.
-- Both trajectories are plotted against time (cycles) to visualise how well the digital twin tracks real degradation.
-
-![Digital Twin Engine 24](figures/digital_twin_24.png)
+![Digital Twin Engine 24](figures/digitl_twin_24.png)
 ![Digital Twin Engine 35](figures/digital_twin_25.png)
 
 ## Project Structure
 
 ```
-.
+
 ├── datasets/
 │   ├── Train/train_FD001.txt
 │   ├── Test/test_FD001.txt
@@ -125,9 +119,9 @@ pip install numpy pandas matplotlib seaborn scikit-learn
 
 ##  Usage
 
-1. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/behrad3d/nasa-cmaps) and place it in the `datasets/` folder as shown above.
+1. Download the dataset from Kaggle(https://www.kaggle.com/datasets/behrad3d/nasa-cmaps) and place it in the `datasets/` folder as shown above in `Project Structure`.
 2. Open the notebook:
    ```bash
    jupyter notebook Predictive_Maintenance_for_NASA_Turbofan_Engines.ipynb
    ```
-3. Run all cells in order — preprocessing, model training, evaluation, and digital twin simulation are all self-contained.
+3. Run all cells in order.
