@@ -6,7 +6,7 @@ A machine learning project that builds a digital twin for turbofan jet engines b
 
 ## Overview
 
-Aircraft engines degrade over time. By modelling the relationship between sensor readings and remaining operational cycles, we can predict when an engine is likely to fail and schedule maintenance proactively. This project trains and compares several regression models on the NASA C-MAPSS dataset for digital twin simulation.
+Aircraft engines degrade over time. By modelling the relationship between sensor readings and remaining operational cycles, we can predict when an engine is likely to fail. This project trains and compares several regression models on the NASA C-MAPSS dataset for digital twin simulation. 
 
 ---
 
@@ -124,4 +124,4 @@ pip install numpy pandas matplotlib seaborn scikit-learn
    ```bash
    jupyter notebook Predictive_Maintenance_for_NASA_Turbofan_Engines.ipynb
    ```
-3. Run all cells in order.
+3. Run all cells.
